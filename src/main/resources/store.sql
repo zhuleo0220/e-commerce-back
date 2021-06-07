@@ -11,5 +11,5 @@ CREATE TABLE `ums_admin` (
 -- ----------------------------
 -- Records of ums_admin
 -- ----------------------------
-INSERT INTO `ums_admin` VALUES ('1', 'test', '$2a$10$S0ssvNzGpG1pxyXmfdGnNuLAmDIdWU4MV8GLgWxUAizOuch1fdrvG',  '2018-09-29 13:55:30', '2018-09-29 13:55:39');
-INSERT INTO `ums_admin` VALUES ('3', 'admin', '$2a$10$S0ssvNzGpG1pxyXmfdGnNuLAmDIdWU4MV8GLgWxUAizOuch1fdrvG',  '2018-10-08 13:32:47', '2019-04-20 12:45:16');
+INSERT INTO `ums_admin` VALUES ('1', 'test', '$2a$10$S0ssvNzGpG1pxyXmfdGnNuLAmDIdWU4MV8GLgWxUAizOuch1fdrvG',  '2018-09-29 13:55:30', '2018-09-29 13:55:39');#username: test, password: zhu
+INSERT INTO `ums_admin` VALUES ('3', 'admin', '$2a$10$S0ssvNzGpG1pxyXmfdGnNuLAmDIdWU4MV8GLgWxUAizOuch1fdrvG',  '2018-10-08 13:32:47', '2019-04-20 12:45:16');#username: admin, password: zhu
