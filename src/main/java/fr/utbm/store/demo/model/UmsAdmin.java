@@ -11,6 +11,9 @@ public class UmsAdmin implements Serializable {
 
     private String password;
 
+    @ApiModelProperty(value = "1 管理员，0 用户")
+    private Integer role;
+
     @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
@@ -43,6 +46,14 @@ public class UmsAdmin implements Serializable {
         this.password = password;
     }
 
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -68,6 +79,7 @@ public class UmsAdmin implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", username=").append(username);
         sb.append(", password=").append(password);
+        sb.append(", role=").append(role);
         sb.append(", createTime=").append(createTime);
         sb.append(", loginTime=").append(loginTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);

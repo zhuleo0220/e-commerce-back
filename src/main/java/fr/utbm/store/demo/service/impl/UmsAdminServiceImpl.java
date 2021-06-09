@@ -9,7 +9,7 @@ import fr.utbm.store.demo.dao.UmsAdminDao;
 import fr.utbm.store.demo.dto.UmsAdminParam;
 import fr.utbm.store.demo.dto.UpdateAdminPasswordParam;
 import fr.utbm.store.demo.exception.Asserts;
-import fr.utbm.store.demo.mapper.UmsAdminMapper;
+import fr.utbm.store.demo.dao.UmsAdminMapper;
 import fr.utbm.store.demo.model.UmsAdmin;
 import fr.utbm.store.demo.model.UmsAdminExample;
 import fr.utbm.store.demo.service.UmsAdminService;
@@ -64,6 +64,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         UmsAdmin umsAdmin = new UmsAdmin();
         BeanUtils.copyProperties(umsAdminParam, umsAdmin);
         umsAdmin.setCreateTime(new Date());
+        umsAdmin.setRole(0);
         //查询是否有相同用户名的用户
         UmsAdminExample example = new UmsAdminExample();
         example.createCriteria().andUsernameEqualTo(umsAdmin.getUsername());
@@ -86,6 +87,28 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             UserDetails userDetails = loadUserByUsername(username);
             if(!passwordEncoder.matches(password,userDetails.getPassword())){
                 Asserts.fail("密码不正确");
+            }
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            token = jwtTokenUtil.generateToken(userDetails);
+//            updateLoginTimeByUsername(username);
+        } catch (AuthenticationException e) {
+            LOGGER.warn("登录异常:{}", e.getMessage());
+        }
+        return token;
+    }
+    @Override
+    public String  adminLogin(String username, String password) {
+        UmsAdmin admin = getAdminByUsername(username);
+        String token = null;
+        //密码需要客户端加密后传递
+        try {
+            UserDetails userDetails = loadUserByUsername(username);
+            if(!passwordEncoder.matches(password,userDetails.getPassword())){
+                Asserts.fail("密码不正确");
+            }
+            if(!admin.getRole().equals(1)){
+                Asserts.fail("角色不正确");
             }
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -170,6 +193,15 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public UserDetails loadUserByUsername(String username){
+        //获取用户信息
+        UmsAdmin admin = getAdminByUsername(username);
+        if (admin != null) {
+            return new AdminUserDetails(admin);
+        }
+        throw new UsernameNotFoundException("用户名或密码错误");
+    }
+    @Override
+    public AdminUserDetails loadAdminByUsername(String username){
         //获取用户信息
         UmsAdmin admin = getAdminByUsername(username);
         if (admin != null) {

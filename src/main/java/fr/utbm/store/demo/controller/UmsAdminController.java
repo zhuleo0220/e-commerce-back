@@ -45,7 +45,7 @@ public class UmsAdminController {
         return CommonResult.success(umsAdmin);
     }
 
-    @ApiOperation(value = "登录以后返回token")
+    @ApiOperation(value = "用户登录以后返回token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult login(@Validated @RequestBody UmsAdminLoginParam umsAdminLoginParam) {
@@ -53,13 +53,21 @@ public class UmsAdminController {
         if (token == null) {
             return CommonResult.validateFailed("用户名或密码错误");
         }
-        Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("token", token);
-        tokenMap.put("tokenHead", tokenHead);
-        return CommonResult.success(tokenMap);
+
+        return CommonResult.success(token);
     }
 
+    @ApiOperation(value = "管理员登录以后返回token")
+    @RequestMapping(value = "/adminlogin", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult adminLogin(@Validated @RequestBody UmsAdminLoginParam umsAdminLoginParam) {
+        String token = adminService.adminLogin(umsAdminLoginParam.getUsername(), umsAdminLoginParam.getPassword());
+        if (token == null) {
+            return CommonResult.validateFailed("用户名或密码错误");
+        }
 
+        return CommonResult.success(token);
+    }
 
     @ApiOperation(value = "获取当前登录用户信息")
     @RequestMapping(value = "/info", method = RequestMethod.GET)

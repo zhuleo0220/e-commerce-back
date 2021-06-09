@@ -1,6 +1,7 @@
 package fr.utbm.store.demo.service;
 
 
+import fr.utbm.store.demo.bo.AdminUserDetails;
 import fr.utbm.store.demo.dto.UmsAdminParam;
 import fr.utbm.store.demo.dto.UpdateAdminPasswordParam;
 import fr.utbm.store.demo.model.UmsAdmin;
@@ -26,7 +27,7 @@ public interface UmsAdminService {
      * @return 生成的JWT的token
      */
     String login(String username,String password);
-
+    String adminLogin(String username,String password);
     /**
      * 刷新token的功能
      * @param oldToken 旧的token
@@ -67,4 +68,6 @@ public interface UmsAdminService {
      * 获取用户信息
      */
     UserDetails loadUserByUsername(String username);
+
+    AdminUserDetails loadAdminByUsername(String username);
 }

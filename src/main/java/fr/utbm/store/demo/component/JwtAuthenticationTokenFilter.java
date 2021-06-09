@@ -1,5 +1,7 @@
 package fr.utbm.store.demo.component;
 
+import fr.utbm.store.demo.model.UmsAdmin;
+import fr.utbm.store.demo.service.UmsAdminService;
 import fr.utbm.store.demo.util.JwtTokenUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +25,7 @@ import java.io.IOException;
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UmsAdminService userDetailsService;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
     @Value("${jwt.tokenHeader}")
