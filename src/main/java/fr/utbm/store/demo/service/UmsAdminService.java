@@ -54,6 +54,8 @@ public interface UmsAdminService {
      */
     int delete(Long id);
 
+    UmsAdmin getCurrentUser();
+
 
 
 

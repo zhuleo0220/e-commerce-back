@@ -34,4 +34,4 @@ jwt:
 
 secure:
   ignored:
-    urls: #安全路径白名单
+    urls: ["/product/listAll","/admin/login","/admin/adminlogin","/admin/register/","/admin/logout"]

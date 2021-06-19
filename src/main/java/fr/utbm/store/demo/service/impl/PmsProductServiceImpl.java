@@ -87,7 +87,7 @@ public class PmsProductServiceImpl implements PmsProductService {
     public List<PmsProduct> listAll(Long productCategoryId) {
         PmsProductExample productExample = new PmsProductExample();
         PmsProductExample.Criteria criteria = productExample.createCriteria();
-        if(productCategoryId!=null) {
+        if(productCategoryId!=null&&productCategoryId!=0) {
             criteria.andProductCategoryIdEqualTo(productCategoryId);
         }
         return pmsProductMapper.selectByExampleWithBLOBs(productExample);

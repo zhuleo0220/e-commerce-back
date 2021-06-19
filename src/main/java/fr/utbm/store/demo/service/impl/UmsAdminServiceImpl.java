@@ -5,7 +5,6 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import fr.utbm.store.demo.bo.AdminUserDetails;
-import fr.utbm.store.demo.dao.UmsAdminDao;
 import fr.utbm.store.demo.dto.UmsAdminParam;
 import fr.utbm.store.demo.dto.UpdateAdminPasswordParam;
 import fr.utbm.store.demo.exception.Asserts;
@@ -167,6 +166,12 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         return count;
     }
 
+    @Override
+    public UmsAdmin getCurrentUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        AdminUserDetails umsAdmin=loadAdminByUsername(username);
+        return umsAdmin.getUmsAdmin();
+    }
 
 
     @Override

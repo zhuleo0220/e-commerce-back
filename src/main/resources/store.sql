@@ -41,3 +41,52 @@ CREATE TABLE `address` (
                                `phone_number` int(11) ,
                                PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='地址信息';
+
+DROP TABLE IF EXISTS `pms_product_category`;
+CREATE TABLE `pms_product_category` (
+                                        `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                                        `parent_id` bigint(20) DEFAULT NULL COMMENT '上机分类的编号：0表示一级分类',
+                                        `name` varchar(64) DEFAULT NULL,
+                                        `level` int(1) DEFAULT NULL COMMENT '分类级别：0->1级；1->2级',
+                                        `product_count` int(11) DEFAULT NULL,
+                                        `keywords` varchar(255) DEFAULT NULL,
+                                        `description` text COMMENT '描述',
+                                        PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COMMENT='产品分类';
+DROP TABLE IF EXISTS `oms_cart_item`;
+CREATE TABLE `oms_cart_item` (
+                                 `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                                 `product_id` bigint(20) DEFAULT NULL,
+                                 `member_id` bigint(20) DEFAULT NULL,
+                                 `order_id` bigint(20) DEFAULT NULL,
+                                 `quantity` int(11) DEFAULT NULL COMMENT '购买数量',
+                                 `price` decimal(10,2) DEFAULT NULL COMMENT '添加到购物车的价格',
+                                 `product_name` varchar(500) DEFAULT NULL COMMENT '商品名称',
+                                 `subtotal` decimal(10,2) DEFAULT NULL ,
+                                 `delete_status` int(20) DEFAULT NULL,
+
+                             PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='购物车表';
+DROP TABLE IF EXISTS `member_collection`;
+CREATE TABLE `member_collection` (
+                                 `id` bigint(20) NOT NULL AUTO_INCREMENT,
+                                 `product_id` bigint(20) DEFAULT NULL,
+                                 `member_id` bigint(20) DEFAULT NULL,
+
+
+                                 PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 ;
+DROP TABLE IF EXISTS `oms_order`;
+CREATE TABLE `oms_order` (
+                             `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '订单id',
+                             `member_id` bigint(20) NOT NULL,
+                             `create_time` datetime DEFAULT NULL COMMENT '提交时间',
+                             `total_amount` decimal(10,2) DEFAULT NULL COMMENT '订单总金额',
+                             `note` varchar(250) DEFAULT NULL,
+                             `status` int(1) DEFAULT NULL COMMENT '0:ordercreated,1:paied,2:delivered,3:received',
+                             `confirm_status` int(1) DEFAULT NULL COMMENT '确认收货状态：0->未确认；1->已确认',
+                             `payment_time` datetime DEFAULT NULL COMMENT '支付时间',
+                             `delivery_time` datetime DEFAULT NULL COMMENT '发货时间',
+                             `receive_time` datetime DEFAULT NULL COMMENT '确认收货时间',
+                             PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='订单表';

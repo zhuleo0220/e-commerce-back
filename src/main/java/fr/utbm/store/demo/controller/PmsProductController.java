@@ -38,13 +38,15 @@ public class PmsProductController {
                                @RequestParam(name = "price") BigDecimal price,
                                @RequestParam(name = "name") String productname,
                                @RequestParam(name = "stock") Integer stock,
-                                @RequestParam(name = "keyword") String keyword) {
+                                @RequestParam(name = "keyword") String keyword,
+                               @RequestParam(name = "categoryId") Long categoryId) {
         PmsProduct pmsProduct=new PmsProduct();
         pmsProduct.setDescription(description);
         pmsProduct.setName(productname);
         pmsProduct.setKeywords(keyword);
         pmsProduct.setPrice(price);
         pmsProduct.setStock(stock);
+        pmsProduct.setProductCategoryId(categoryId);
        try
        {
         if (image != null) {
@@ -78,6 +80,7 @@ public class PmsProductController {
                                @RequestParam(name = "name") String productname,
                                @RequestParam(name = "stock") Integer stock,
                                @RequestParam(name = "keyword") String keyword,
+                               @RequestParam(name = "categoryId") Long categoryId,
                                @RequestParam(name = "productId") Long Id) {
         PmsProduct pmsProduct=new PmsProduct();
         pmsProduct.setDescription(description);
@@ -85,6 +88,7 @@ public class PmsProductController {
         pmsProduct.setKeywords(keyword);
         pmsProduct.setPrice(price);
         pmsProduct.setStock(stock);
+        pmsProduct.setProductCategoryId(categoryId);
         try
         {
             if (image != null) {
@@ -122,9 +126,9 @@ public class PmsProductController {
         return CommonResult.success(CommonPage.restPage(productList));
     }
     @ApiOperation("查询商品")
-    @RequestMapping(value = "/listAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/listAll/{productCategoryId}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<List<PmsProduct>> getAllList(Long productCategoryId)
+    public CommonResult<List<PmsProduct>> getAllList(@PathVariable Long productCategoryId)
                                                          {
         List<PmsProduct> productList = productService.listAll(productCategoryId);
         return CommonResult.success(productList);
