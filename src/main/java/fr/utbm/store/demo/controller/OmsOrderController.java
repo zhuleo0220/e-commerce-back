@@ -63,10 +63,21 @@ public class OmsOrderController {
     }
 
     @ApiOperation("批量发货")
-    @RequestMapping(value = "/update/delivery", method = RequestMethod.POST)
+    @RequestMapping(value = "/update/delivery", method = RequestMethod.DELETE)
     @ResponseBody
-    public CommonResult delivery(@RequestBody Long id) {
+    public CommonResult delivery(Long id) {
         int count = orderService.delivery(id);
+        if (count > 0) {
+            return CommonResult.success(count);
+        }
+        return CommonResult.failed();
+    }
+
+    @ApiOperation("批量收货")
+    @RequestMapping(value = "/update/received", method = RequestMethod.DELETE)
+    @ResponseBody
+    public CommonResult receive(Long id) {
+        int count = orderService.confirmReceiveOrder(id);
         if (count > 0) {
             return CommonResult.success(count);
         }

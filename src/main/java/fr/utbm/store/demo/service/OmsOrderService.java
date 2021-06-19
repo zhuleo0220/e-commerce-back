@@ -46,6 +46,6 @@ public interface OmsOrderService {
     /**
      * 确认收货
      */
-    void confirmReceiveOrder(Long orderId);
+    int confirmReceiveOrder(Long orderId);
 
 }

@@ -53,11 +53,11 @@ public class OmsOrderServiceImpl implements OmsOrderService {
     public int delivery(Long id) {
         OmsOrder order=new OmsOrder();
         order.setDeliveryTime(new Date());
-        order.setStatus(3);
+        order.setStatus(2);
         order.setNote("delivered,waiting the usr to comfirm");
         order.setId(id);
         //批量发货
-        int count = orderMapper.updateByPrimaryKey(order);
+        int count = orderMapper.updateByPrimaryKeySelective(order);
         //添加操作记录
 
         return count;
@@ -117,12 +117,15 @@ public class OmsOrderServiceImpl implements OmsOrderService {
     }
 
     @Override
-    public void confirmReceiveOrder(Long orderId) {
+    public int confirmReceiveOrder(Long orderId) {
         OmsOrder omsOrder=new OmsOrder();
         omsOrder.setId(orderId);
         omsOrder.setConfirmStatus(1);
+        omsOrder.setStatus(4);
+        omsOrder.setNote("received, order finish");
         omsOrder.setReceiveTime(new Date());
-    orderMapper.updateByPrimaryKey(omsOrder);
+    int count=orderMapper.updateByPrimaryKeySelective(omsOrder);
+    return count;
     }
 
 
