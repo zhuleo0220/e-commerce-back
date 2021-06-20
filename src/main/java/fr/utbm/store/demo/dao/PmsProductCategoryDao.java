@@ -5,7 +5,7 @@ import fr.utbm.store.demo.model.PmsProductCategoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface PmsProductCategoryMapper {
+public interface PmsProductCategoryDao {
     long countByExample(PmsProductCategoryExample example);
 
     int deleteByExample(PmsProductCategoryExample example);

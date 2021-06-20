@@ -1,18 +1,12 @@
 package fr.utbm.store.demo.service.impl;
 
 
-import fr.utbm.store.demo.dao.MemberCollectionMapper;
-import fr.utbm.store.demo.dao.PmsProductMapper;
+import fr.utbm.store.demo.dao.MemberCollectionDao;
+import fr.utbm.store.demo.dao.PmsProductDao;
 import fr.utbm.store.demo.model.*;
 import fr.utbm.store.demo.service.MemberCollectionService;
-import fr.utbm.store.demo.service.PmsProductService;
 import fr.utbm.store.demo.service.UmsAdminService;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -23,11 +17,11 @@ import java.util.List;
 @Service
 public class MemberCollectionServiceImpl implements MemberCollectionService {
     @Autowired
-    private MemberCollectionMapper memberCollectionDao;
+    private MemberCollectionDao memberCollectionDao;
     @Autowired
     private UmsAdminService memberService;
     @Autowired
-    private PmsProductMapper pmsProductMapper;
+    private PmsProductDao pmsProductDao;
 
     @Override
     public int add(PmsProduct pmsProduct) {
@@ -73,7 +67,7 @@ public class MemberCollectionServiceImpl implements MemberCollectionService {
             }
             PmsProductExample pmsProductExample=new PmsProductExample();
             pmsProductExample.createCriteria().andIdIn(ids);
-            return pmsProductMapper.selectByExampleWithBLOBs(pmsProductExample);
+            return pmsProductDao.selectByExampleWithBLOBs(pmsProductExample);
         }
 
         return null;

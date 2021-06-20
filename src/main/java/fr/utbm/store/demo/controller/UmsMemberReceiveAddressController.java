@@ -3,21 +3,15 @@ package fr.utbm.store.demo.controller;
 import fr.utbm.store.demo.api.CommonResult;
 import fr.utbm.store.demo.bo.AdminUserDetails;
 import fr.utbm.store.demo.model.Address;
-import fr.utbm.store.demo.model.UmsAdmin;
 import fr.utbm.store.demo.service.UmsAdminService;
 import fr.utbm.store.demo.service.UmsMemberReceiveAddressService;
-import fr.utbm.store.demo.util.JwtTokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -28,14 +22,7 @@ public class UmsMemberReceiveAddressController {
     private UmsMemberReceiveAddressService memberReceiveAddressService;
     @Autowired
     private UmsAdminService umsAdminService;
-    @Autowired
-    private UserDetailsService userDetailsService;
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-    @Value("${jwt.tokenHeader}")
-    private String tokenHeader;
-    @Value("${jwt.tokenHead}")
-    private String tokenHead;
+
 
 
     @ApiOperation("添加收货地址")

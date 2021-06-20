@@ -2,7 +2,7 @@ package fr.utbm.store.demo.service.impl;
 
 import com.github.pagehelper.PageHelper;
 
-import fr.utbm.store.demo.dao.PmsProductMapper;
+import fr.utbm.store.demo.dao.PmsProductDao;
 import fr.utbm.store.demo.model.PmsProduct;
 import fr.utbm.store.demo.model.PmsProductExample;
 import fr.utbm.store.demo.service.PmsProductService;
@@ -20,7 +20,7 @@ public class PmsProductServiceImpl implements PmsProductService {
     private static final Logger LOGGER = LoggerFactory.getLogger(fr.utbm.store.demo.service.impl.PmsProductServiceImpl.class);
 
     @Autowired
-    private PmsProductMapper pmsProductMapper;
+    private PmsProductDao pmsProductDao;
 
 
     @Override
@@ -29,7 +29,7 @@ public class PmsProductServiceImpl implements PmsProductService {
         //创建商品
         PmsProduct product = productParam;
         product.setId(null);
-        pmsProductMapper.insertSelective(product);
+        pmsProductDao.insertSelective(product);
         LOGGER.info("successful insert product, name:"+ product.getName());
         count = 1;
         return count;
@@ -44,7 +44,7 @@ public class PmsProductServiceImpl implements PmsProductService {
         //更新商品信息
         PmsProduct product = productParam;
         product.setId(id);
-        pmsProductMapper.updateByPrimaryKeySelective(product);
+        pmsProductDao.updateByPrimaryKeySelective(product);
         count = 1;
         return count;
     }
@@ -54,7 +54,7 @@ public class PmsProductServiceImpl implements PmsProductService {
         PmsProductExample productExample = new PmsProductExample();
         PmsProductExample.Criteria criteria = productExample.createCriteria();
         criteria.andIdEqualTo(id);
-        return pmsProductMapper.selectByExampleWithBLOBs(productExample).get(0);
+        return pmsProductDao.selectByExampleWithBLOBs(productExample).get(0);
     }
 
 
@@ -66,7 +66,7 @@ public class PmsProductServiceImpl implements PmsProductService {
         if(productCategoryId!=null) {
             criteria.andProductCategoryIdEqualTo(productCategoryId);
         }
-        return pmsProductMapper.selectByExampleWithBLOBs(productExample);
+        return pmsProductDao.selectByExampleWithBLOBs(productExample);
     }
 
 
@@ -80,7 +80,7 @@ public class PmsProductServiceImpl implements PmsProductService {
         if(!StringUtils.isEmpty(keyword)){
             criteria.andNameLike("%" + keyword + "%");
            }
-        return pmsProductMapper.selectByExampleWithBLOBs(productExample);
+        return pmsProductDao.selectByExampleWithBLOBs(productExample);
     }
 
     @Override
@@ -90,14 +90,14 @@ public class PmsProductServiceImpl implements PmsProductService {
         if(productCategoryId!=null&&productCategoryId!=0) {
             criteria.andProductCategoryIdEqualTo(productCategoryId);
         }
-        return pmsProductMapper.selectByExampleWithBLOBs(productExample);
+        return pmsProductDao.selectByExampleWithBLOBs(productExample);
     }
 
     @Override
     public int delete(Long productId) {
         int count;
         //更新商品信息
-        pmsProductMapper.deleteByPrimaryKey(productId);
+        pmsProductDao.deleteByPrimaryKey(productId);
         count = 1;
         return count;
     }

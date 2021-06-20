@@ -1,8 +1,8 @@
 package fr.utbm.store.demo.service.impl;
 
 
-import fr.utbm.store.demo.dao.PmsProductCategoryMapper;
-import fr.utbm.store.demo.dao.PmsProductMapper;
+import fr.utbm.store.demo.dao.PmsProductCategoryDao;
+import fr.utbm.store.demo.dao.PmsProductDao;
 import fr.utbm.store.demo.model.PmsProduct;
 import fr.utbm.store.demo.model.PmsProductCategory;
 import fr.utbm.store.demo.model.PmsProductCategoryExample;
@@ -12,16 +12,15 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
 public class PmsProductCategoryServiceImpl implements PmsProductCategoryService {
     @Autowired
-    private PmsProductCategoryMapper productCategoryMapper;
+    private PmsProductCategoryDao productCategoryMapper;
     @Autowired
-    private PmsProductMapper productMapper;
+    private PmsProductDao productMapper;
 
 
     @Override

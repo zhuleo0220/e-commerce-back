@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="fr.utbm.store.demo.dao.OmsCartItemMapper">
+<mapper namespace="fr.utbm.store.demo.dao.OmsCartItemDao">
   <resultMap id="BaseResultMap" type="fr.utbm.store.demo.model.OmsCartItem">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="product_id" jdbcType="BIGINT" property="productId" />
@@ -88,7 +88,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from oms_cart_item
     where id = #{id,jdbcType=BIGINT}
@@ -107,11 +107,11 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into oms_cart_item (product_id, member_id, order_id, 
-      quantity, price, product_name, 
+    insert into oms_cart_item (product_id, member_id, order_id,
+      quantity, price, product_name,
       subtotal, delete_status)
-    values (#{productId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, 
-      #{quantity,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{productName,jdbcType=VARCHAR}, 
+    values (#{productId,jdbcType=BIGINT}, #{memberId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT},
+      #{quantity,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{productName,jdbcType=VARCHAR},
       #{subtotal,jdbcType=DECIMAL}, #{deleteStatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="fr.utbm.store.demo.model.OmsCartItem">

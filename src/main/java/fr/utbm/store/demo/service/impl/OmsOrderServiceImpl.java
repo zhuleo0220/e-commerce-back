@@ -1,10 +1,8 @@
 package fr.utbm.store.demo.service.impl;
 
-import com.github.pagehelper.PageHelper;
-
-import fr.utbm.store.demo.dao.AddressMapper;
-import fr.utbm.store.demo.dao.OmsCartItemMapper;
-import fr.utbm.store.demo.dao.OmsOrderMapper;
+import fr.utbm.store.demo.dao.AddressDao;
+import fr.utbm.store.demo.dao.OmsCartItemDao;
+import fr.utbm.store.demo.dao.OmsOrderDao;
 import fr.utbm.store.demo.model.OmsCartItem;
 import fr.utbm.store.demo.model.OmsCartItemExample;
 import fr.utbm.store.demo.model.OmsOrder;
@@ -18,17 +16,16 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
 public class OmsOrderServiceImpl implements OmsOrderService {
     @Autowired
-    private OmsOrderMapper orderMapper;
+    private OmsOrderDao orderMapper;
     @Autowired
-    private OmsCartItemMapper omsCartItemMapper;
+    private OmsCartItemDao omsCartItemDao;
     @Autowired
-    private AddressMapper addressMapper;
+    private AddressDao addressDao;
     @Autowired
     private UmsAdminService umsAdminService;
 
@@ -83,14 +80,14 @@ public class OmsOrderServiceImpl implements OmsOrderService {
     public List<OmsCartItem> itemDetail(Long id) {
         OmsCartItemExample example = new OmsCartItemExample();
         example.createCriteria().andOrderIdEqualTo(id);
-        return omsCartItemMapper.selectByExample(example);
+        return omsCartItemDao.selectByExample(example);
     }
 
     @Override
     public void createOrder() {
         OmsCartItemExample example1=new OmsCartItemExample();
         example1.createCriteria().andMemberIdEqualTo(umsAdminService.getCurrentUser().getId()).andDeleteStatusEqualTo(0);
-        List<OmsCartItem> omsCartItems=omsCartItemMapper.selectByExample(example1);
+        List<OmsCartItem> omsCartItems= omsCartItemDao.selectByExample(example1);
         List<Long> cartIds=new LinkedList<Long>();
         for(OmsCartItem omsCart : omsCartItems){
             cartIds.add(omsCart.getId());
@@ -103,7 +100,7 @@ public class OmsOrderServiceImpl implements OmsOrderService {
         omsOrder.setPaymentTime(new Date());
         BigDecimal total=new BigDecimal(0);
         for(Long id : cartIds){
-            total=total.add(omsCartItemMapper.selectByPrimaryKey(id).getPrice().multiply(new BigDecimal(omsCartItemMapper.selectByPrimaryKey(id).getQuantity())));
+            total=total.add(omsCartItemDao.selectByPrimaryKey(id).getPrice().multiply(new BigDecimal(omsCartItemDao.selectByPrimaryKey(id).getQuantity())));
         }
         omsOrder.setTotalAmount(total);
         omsOrder.setConfirmStatus(0);
@@ -113,7 +110,7 @@ public class OmsOrderServiceImpl implements OmsOrderService {
         OmsCartItem omsCartItem=new OmsCartItem();
         omsCartItem.setDeleteStatus(1);
         omsCartItem.setOrderId(omsOrder.getId());
-        omsCartItemMapper.updateByExampleSelective(omsCartItem,example);
+        omsCartItemDao.updateByExampleSelective(omsCartItem,example);
     }
 
     @Override

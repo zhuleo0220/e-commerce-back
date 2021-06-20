@@ -1,15 +1,10 @@
 package fr.utbm.store.demo.controller;
 
-
-import fr.utbm.store.demo.api.CommonPage;
 import fr.utbm.store.demo.api.CommonResult;
-import fr.utbm.store.demo.exception.Asserts;
 import fr.utbm.store.demo.model.PmsProduct;
-import fr.utbm.store.demo.model.PmsProductParam;
 import fr.utbm.store.demo.service.PmsProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import javafx.scene.control.Alert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,15 +111,7 @@ public class PmsProductController {
         }
     }
 
-    @ApiOperation("查询商品")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<CommonPage<PmsProduct>> getList(Long productCategoryId,
-                                                        @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                                        @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        List<PmsProduct> productList = productService.list(productCategoryId, pageSize, pageNum);
-        return CommonResult.success(CommonPage.restPage(productList));
-    }
+
     @ApiOperation("查询商品")
     @RequestMapping(value = "/listAll/{productCategoryId}", method = RequestMethod.GET)
     @ResponseBody
@@ -134,13 +121,7 @@ public class PmsProductController {
         return CommonResult.success(productList);
     }
 
-    @ApiOperation("根据商品名称或货号模糊查询")
-    @RequestMapping(value = "/simpleList", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<List<PmsProduct>> getList(String keyword) {
-        List<PmsProduct> productList = productService.list(keyword);
-        return CommonResult.success(productList);
-    }
+
 
 
 }

@@ -5,7 +5,7 @@ import fr.utbm.store.demo.model.MemberCollectionExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface MemberCollectionMapper {
+public interface MemberCollectionDao {
     long countByExample(MemberCollectionExample example);
 
     int deleteByExample(MemberCollectionExample example);

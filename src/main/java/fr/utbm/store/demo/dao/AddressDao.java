@@ -5,7 +5,7 @@ import fr.utbm.store.demo.model.AddressExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface AddressMapper {
+public interface AddressDao {
     long countByExample(AddressExample example);
 
     int deleteByExample(AddressExample example);

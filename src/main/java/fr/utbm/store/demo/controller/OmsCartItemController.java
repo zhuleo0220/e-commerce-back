@@ -4,7 +4,6 @@ package fr.utbm.store.demo.controller;
 import fr.utbm.store.demo.api.CommonResult;
 import fr.utbm.store.demo.model.OmsCartItem;
 import fr.utbm.store.demo.model.PmsProduct;
-import fr.utbm.store.demo.model.UmsAdmin;
 import fr.utbm.store.demo.service.OmsCartItemService;
 import fr.utbm.store.demo.service.UmsAdminService;
 import io.swagger.annotations.Api;

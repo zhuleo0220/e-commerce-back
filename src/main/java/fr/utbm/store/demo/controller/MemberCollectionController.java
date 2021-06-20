@@ -2,13 +2,11 @@ package fr.utbm.store.demo.controller;
 
 
 import fr.utbm.store.demo.api.CommonResult;
-import fr.utbm.store.demo.model.MemberCollection;
 import fr.utbm.store.demo.model.PmsProduct;
 import fr.utbm.store.demo.service.MemberCollectionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 

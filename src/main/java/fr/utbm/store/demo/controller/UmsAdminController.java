@@ -1,7 +1,6 @@
 package fr.utbm.store.demo.controller;
 
 
-import fr.utbm.store.demo.api.CommonPage;
 import fr.utbm.store.demo.api.CommonResult;
 import fr.utbm.store.demo.dto.UmsAdminLoginParam;
 import fr.utbm.store.demo.dto.UmsAdminParam;
@@ -20,9 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 @Api(tags = "UmsAdminController", description = "后台用户管理")
@@ -92,15 +89,7 @@ public class UmsAdminController {
         return CommonResult.success(null);
     }
 
-    @ApiOperation("根据用户名或姓名分页获取用户列表")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult<CommonPage<UmsAdmin>> list(@RequestParam(value = "keyword", required = false) String keyword,
-                                                   @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                                   @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        List<UmsAdmin> adminList = adminService.list(keyword, pageSize, pageNum);
-        return CommonResult.success(CommonPage.restPage(adminList));
-    }
+
 
 
 

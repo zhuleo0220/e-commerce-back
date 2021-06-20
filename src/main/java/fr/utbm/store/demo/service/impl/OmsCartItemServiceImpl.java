@@ -1,8 +1,6 @@
 package fr.utbm.store.demo.service.impl;
 
-import cn.hutool.core.collection.CollUtil;
-
-import fr.utbm.store.demo.dao.OmsCartItemMapper;
+import fr.utbm.store.demo.dao.OmsCartItemDao;
 import fr.utbm.store.demo.model.OmsCartItem;
 import fr.utbm.store.demo.model.OmsCartItemExample;
 import fr.utbm.store.demo.service.OmsCartItemService;
@@ -10,18 +8,14 @@ import fr.utbm.store.demo.service.UmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
 public class OmsCartItemServiceImpl implements OmsCartItemService {
     @Autowired
-    private OmsCartItemMapper cartItemMapper;
+    private OmsCartItemDao cartItemMapper;
 
     @Autowired
     private UmsAdminService umsAdminService;

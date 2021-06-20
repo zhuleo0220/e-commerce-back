@@ -5,7 +5,7 @@ import fr.utbm.store.demo.model.OmsCartItemExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface OmsCartItemMapper {
+public interface OmsCartItemDao {
     long countByExample(OmsCartItemExample example);
 
     int deleteByExample(OmsCartItemExample example);
