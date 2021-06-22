@@ -3,11 +3,10 @@ package fr.utbm.store.demo.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
-import com.github.pagehelper.PageHelper;
-import fr.utbm.store.demo.bo.AdminUserDetails;
+import fr.utbm.store.demo.config.AdminUserDetails;
 import fr.utbm.store.demo.dao.UmsAdminDao;
-import fr.utbm.store.demo.dto.UmsAdminParam;
-import fr.utbm.store.demo.dto.UpdateAdminPasswordParam;
+import fr.utbm.store.demo.model.UmsAdminParam;
+import fr.utbm.store.demo.model.UpdateAdminPasswordParam;
 import fr.utbm.store.demo.exception.Asserts;
 import fr.utbm.store.demo.model.UmsAdmin;
 import fr.utbm.store.demo.model.UmsAdminExample;
@@ -24,7 +23,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -118,27 +116,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
         return token;
     }
 
-    /**
-     * 添加登录记录
-     * @param username 用户名
-     */
 
-    /**
-     * 根据用户名修改登录时间
-     */
-
-
-
-    @Override
-    public List<UmsAdmin> list(String keyword, Integer pageSize, Integer pageNum) {
-        PageHelper.startPage(pageNum, pageSize);
-        UmsAdminExample example = new UmsAdminExample();
-        UmsAdminExample.Criteria criteria = example.createCriteria();
-        if (!StringUtils.isEmpty(keyword)) {
-            criteria.andUsernameLike("%" + keyword + "%");
-        }
-        return adminDao.selectByExample(example);
-    }
 
     @Override
     public int update(Long id, UmsAdmin admin) {

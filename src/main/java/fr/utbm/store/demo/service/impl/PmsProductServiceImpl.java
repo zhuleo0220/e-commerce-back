@@ -1,6 +1,5 @@
 package fr.utbm.store.demo.service.impl;
 
-import com.github.pagehelper.PageHelper;
 
 import fr.utbm.store.demo.dao.PmsProductDao;
 import fr.utbm.store.demo.model.PmsProduct;
@@ -58,16 +57,8 @@ public class PmsProductServiceImpl implements PmsProductService {
     }
 
 
-    @Override
-    public List<PmsProduct> list(Long productCategoryId,Integer pageSize, Integer pageNum) {
-        PageHelper.startPage(pageNum, pageSize);
-        PmsProductExample productExample = new PmsProductExample();
-        PmsProductExample.Criteria criteria = productExample.createCriteria();
-        if(productCategoryId!=null) {
-            criteria.andProductCategoryIdEqualTo(productCategoryId);
-        }
-        return pmsProductDao.selectByExampleWithBLOBs(productExample);
-    }
+
+
 
 
 

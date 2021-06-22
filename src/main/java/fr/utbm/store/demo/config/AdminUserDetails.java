@@ -1,4 +1,4 @@
-package fr.utbm.store.demo.bo;
+package fr.utbm.store.demo.config;
 
 
 import fr.utbm.store.demo.model.UmsAdmin;

@@ -1,13 +1,11 @@
 package fr.utbm.store.demo.service;
 
 
-import fr.utbm.store.demo.bo.AdminUserDetails;
-import fr.utbm.store.demo.dto.UmsAdminParam;
-import fr.utbm.store.demo.dto.UpdateAdminPasswordParam;
+import fr.utbm.store.demo.config.AdminUserDetails;
+import fr.utbm.store.demo.model.UmsAdminParam;
+import fr.utbm.store.demo.model.UpdateAdminPasswordParam;
 import fr.utbm.store.demo.model.UmsAdmin;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.List;
 
 public interface UmsAdminService {
     /**
@@ -39,10 +37,6 @@ public interface UmsAdminService {
      */
 
 
-    /**
-     * 根据用户名或昵称分页查询用户
-     */
-    List<UmsAdmin> list(String keyword, Integer pageSize, Integer pageNum);
 
     /**
      * 修改指定用户信息

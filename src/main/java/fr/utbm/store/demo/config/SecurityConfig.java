@@ -1,6 +1,5 @@
 package fr.utbm.store.demo.config;
 
-import fr.utbm.store.demo.component.*;
 import fr.utbm.store.demo.util.JwtTokenUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

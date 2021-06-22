@@ -1,6 +1,5 @@
 package fr.utbm.store.demo.config;
 
-import fr.utbm.store.demo.domain.SwaggerProperties;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;

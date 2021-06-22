@@ -1,4 +1,4 @@
-package fr.utbm.store.demo.component;
+package fr.utbm.store.demo.config;
 
 
 import fr.utbm.store.demo.api.CommonResult;

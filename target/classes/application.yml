@@ -32,6 +32,3 @@ jwt:
   tokenHead: 'Bearer '  #JWT负载中拿到开头
 
 
-secure:
-  ignored:
-    urls: ["/product/listAll","/admin/login","/admin/adminlogin","/admin/register/","/admin/logout"]

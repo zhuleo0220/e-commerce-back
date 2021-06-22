@@ -25,10 +25,7 @@ public interface PmsProductService {
 
 
     PmsProduct getProduct(Long id);
-    /**
-     * 分页查询商品
-     */
-    List<PmsProduct> list(Long productCategoryId,Integer pageSize, Integer pageNum);
+
 
 
     List<PmsProduct> list(String keyword);

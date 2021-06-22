@@ -1,4 +1,4 @@
-package fr.utbm.store.demo.dto;
+package fr.utbm.store.demo.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

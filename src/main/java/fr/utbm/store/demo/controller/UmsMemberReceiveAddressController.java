@@ -1,7 +1,7 @@
 package fr.utbm.store.demo.controller;
 
 import fr.utbm.store.demo.api.CommonResult;
-import fr.utbm.store.demo.bo.AdminUserDetails;
+import fr.utbm.store.demo.config.AdminUserDetails;
 import fr.utbm.store.demo.model.Address;
 import fr.utbm.store.demo.service.UmsAdminService;
 import fr.utbm.store.demo.service.UmsMemberReceiveAddressService;

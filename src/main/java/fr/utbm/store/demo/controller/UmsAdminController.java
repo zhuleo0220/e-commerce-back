@@ -2,9 +2,9 @@ package fr.utbm.store.demo.controller;
 
 
 import fr.utbm.store.demo.api.CommonResult;
-import fr.utbm.store.demo.dto.UmsAdminLoginParam;
-import fr.utbm.store.demo.dto.UmsAdminParam;
-import fr.utbm.store.demo.dto.UpdateAdminPasswordParam;
+import fr.utbm.store.demo.model.UmsAdminLoginParam;
+import fr.utbm.store.demo.model.UmsAdminParam;
+import fr.utbm.store.demo.model.UpdateAdminPasswordParam;
 import fr.utbm.store.demo.model.UmsAdmin;
 import fr.utbm.store.demo.service.UmsAdminService;
 import io.swagger.annotations.Api;

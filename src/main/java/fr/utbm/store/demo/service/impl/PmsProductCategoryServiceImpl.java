@@ -52,8 +52,11 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
 
     @Override
     public List<PmsProductCategory> getList(Long parentId) {
-
         PmsProductCategoryExample example = new PmsProductCategoryExample();
+
+        if (parentId==-1){
+            return productCategoryMapper.selectByExample(example);
+        }
         example.createCriteria().andParentIdEqualTo(parentId);
         return productCategoryMapper.selectByExample(example);
     }

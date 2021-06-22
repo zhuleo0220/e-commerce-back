@@ -1,4 +1,4 @@
-package fr.utbm.store.demo.domain;
+package fr.utbm.store.demo.config;
 
 import lombok.Builder;
 import lombok.Data;
